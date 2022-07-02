@@ -1,2 +1,2 @@
 # password-encrypter
- Encrypt text for security
+ Encrypt and Decrypt text
