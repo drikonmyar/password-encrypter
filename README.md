@@ -1,5 +1,5 @@
 # password-encrypter
- Encrypt and Decrypt text <br />
+ Encrypt and Decrypt text
  
  Run main.py <br />
  
