@@ -1,6 +1,9 @@
 # password-encrypter
  Encrypt and Decrypt text
  
+ Run main.py
+ Enter text
+ Password = 12345
  
 ![Capture](https://user-images.githubusercontent.com/100990020/177011445-c65eb40d-4f64-43ef-aab8-ec16c4992e81.PNG)
 
