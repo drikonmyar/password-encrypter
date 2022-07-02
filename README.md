@@ -1,7 +1,7 @@
 # password-encrypter
  Encrypt and Decrypt text
  
- Run main.py <br />
+ Run main.py <br /> <br />
  
  Enter text <br />
  Password = 12345
