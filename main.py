@@ -1,8 +1,11 @@
 from tkinter import *
 from tkinter import messagebox
-import base64
-import os
+# import base64
+# import os
 import config
+
+UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz"
 
 def decrypt():
     password=code.get()
@@ -14,9 +17,21 @@ def decrypt():
         screen2.configure(bg="green")
 
         message=text1.get(1.0,END)
-        decode_message=message.encode("ascii")
-        base64_bytes=base64.b64decode(decode_message)
-        decrypt=base64_bytes.decode("ascii")
+
+        decrypt = ""
+        for character in message:
+            if character.isupper():
+                transCharIndex = (UPPER_LETTERS.find(character) - 9) % 26
+                decrypt += UPPER_LETTERS[transCharIndex]
+            elif character.islower():
+                transCharIndex = (LOWER_LETTERS.find(character) - 23) % 26
+                decrypt += LOWER_LETTERS[transCharIndex]
+            else:
+                decrypt += character
+
+        # decode_message=message.encode("ascii")
+        # base64_bytes=base64.b64decode(decode_message)
+        # decrypt=base64_bytes.decode("ascii")
 
         Label(screen2, text="DECRYPT", font="arial", fg="white", bg="green").place(x=10,y=0)
         text2=Text(screen2,font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
@@ -41,9 +56,21 @@ def encrypt():
         screen1.configure(bg="red")
 
         message=text1.get(1.0,END)
-        encode_message=message.encode("ascii")
-        base64_bytes=base64.b64encode(encode_message)
-        encrypt=base64_bytes.decode("ascii")
+
+        encrypt = ""
+        for character in message:
+            if character.isupper():
+                transCharIndex = (UPPER_LETTERS.find(character) + 9) % 26
+                encrypt += UPPER_LETTERS[transCharIndex]
+            elif character.islower():
+                transCharIndex = (LOWER_LETTERS.find(character) + 23) % 26
+                encrypt += LOWER_LETTERS[transCharIndex]
+            else:
+                encrypt += character
+
+        # encode_message=message.encode("ascii")
+        # base64_bytes=base64.b64encode(encode_message)
+        # encrypt=base64_bytes.decode("ascii")
 
         Label(screen1, text="ENCRYPT", font="arial", fg="white", bg="red").place(x=10,y=0)
         text2=Text(screen1,font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
