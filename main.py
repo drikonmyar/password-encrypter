@@ -10,7 +10,10 @@ LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz"
 def decrypt():
     password=code.get()
 
-    if password==config.pword:
+    if password=="":
+        messagebox.showerror("Error","Input Password")
+
+    else:
         screen2=Toplevel(screen)
         screen2.title("Decrypted text")
         screen2.geometry("400x200")
@@ -18,13 +21,16 @@ def decrypt():
 
         message=text1.get(1.0,END)
 
+        dk_upper_change=int(int(password)/100)
+        dk_lower_change=int(int(password)%100)
+
         decrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) - config.upper_change) % 26
+                transCharIndex = (UPPER_LETTERS.find(character) - dk_upper_change) % 26
                 decrypt += UPPER_LETTERS[transCharIndex]
             elif character.islower():
-                transCharIndex = (LOWER_LETTERS.find(character) - config.lower_change) % 26
+                transCharIndex = (LOWER_LETTERS.find(character) - dk_lower_change) % 26
                 decrypt += LOWER_LETTERS[transCharIndex]
             else:
                 decrypt += character
@@ -39,17 +45,11 @@ def decrypt():
 
         text2.insert(END,decrypt)
 
-    elif password=="":
-        messagebox.showerror("Error","Input Password")
-
-    elif password!=config.pword:
-        messagebox.showerror("Error","Invalid Password")
-
 
 def encrypt():
     password=code.get()
 
-    if password==config.pword:
+    if password==config.encryption_key:
         screen1=Toplevel(screen)
         screen1.title("Encrypted text")
         screen1.geometry("400x200")
@@ -57,16 +57,21 @@ def encrypt():
 
         message=text1.get(1.0,END)
 
+        dk_upper_change=config.upper_change
+        dk_lower_change=config.lower_change
+
         encrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) + config.upper_change) % 26
+                transCharIndex = (UPPER_LETTERS.find(character) + dk_upper_change) % 26
                 encrypt += UPPER_LETTERS[transCharIndex]
             elif character.islower():
-                transCharIndex = (LOWER_LETTERS.find(character) + config.lower_change) % 26
+                transCharIndex = (LOWER_LETTERS.find(character) + dk_lower_change) % 26
                 encrypt += LOWER_LETTERS[transCharIndex]
             else:
                 encrypt += character
+
+        decription_key=(dk_upper_change*100)+dk_lower_change
 
         # encode_message=message.encode("ascii")
         # base64_bytes=base64.b64encode(encode_message)
@@ -76,12 +81,12 @@ def encrypt():
         text2=Text(screen1,font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
         text2.place(x=10,y=40,width=380, height=150)
 
-        text2.insert(END,encrypt)
+        text2.insert(END,encrypt+f"Decryption key: {decription_key}")
 
     elif password=="":
         messagebox.showerror("Error","Input Password")
 
-    elif password!=config.pword:
+    elif password!=config.encryption_key:
         messagebox.showerror("Error","Invalid Password")
 
 

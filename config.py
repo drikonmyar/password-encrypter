@@ -1,3 +1,5 @@
-pword="12345"
-upper_change=9
-lower_change=23
+import random
+
+encryption_key="1234"
+upper_change=random.randint(10,99)
+lower_change=random.randint(10,99)
