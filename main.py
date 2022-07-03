@@ -21,10 +21,10 @@ def decrypt():
         decrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) - 9) % 26
+                transCharIndex = (UPPER_LETTERS.find(character) - config.upper_change) % 26
                 decrypt += UPPER_LETTERS[transCharIndex]
             elif character.islower():
-                transCharIndex = (LOWER_LETTERS.find(character) - 23) % 26
+                transCharIndex = (LOWER_LETTERS.find(character) - config.lower_change) % 26
                 decrypt += LOWER_LETTERS[transCharIndex]
             else:
                 decrypt += character
@@ -60,10 +60,10 @@ def encrypt():
         encrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) + 9) % 26
+                transCharIndex = (UPPER_LETTERS.find(character) + config.upper_change) % 26
                 encrypt += UPPER_LETTERS[transCharIndex]
             elif character.islower():
-                transCharIndex = (LOWER_LETTERS.find(character) + 23) % 26
+                transCharIndex = (LOWER_LETTERS.find(character) + config.lower_change) % 26
                 encrypt += LOWER_LETTERS[transCharIndex]
             else:
                 encrypt += character
@@ -112,9 +112,7 @@ def main_screen():
     Entry(textvariable=code, width=18, bd=0, font=("arial",25), show="*").place(x=10,y=230)
 
     Button(text="ENCRYPT", height="2", width=20, bg="red", fg="white", bd=0, command=encrypt).place(x=10,y=290)
-
     Button(text="DECRYPT", height="2", width=20, bg="green", fg="white", bd=0, command=decrypt).place(x=190,y=290)
-
     Button(text="RESET", height="2", width=46, bg="blue", fg="white", bd=0, command=reset).place(x=10,y=340)
 
     screen.mainloop()
