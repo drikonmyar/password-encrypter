@@ -11,12 +11,12 @@
 Click ENCRYPT <br />
 Copy Decryption key generated
 
-![Capture1](https://user-images.githubusercontent.com/100990020/177038642-a7bee99d-5913-45ba-94b5-40cd93c25574.PNG)
+![Capture](https://user-images.githubusercontent.com/100990020/177080629-0ee7c263-eafe-452a-9d44-d75195d7ae09.PNG)
 
 Enter encrypted text <br />
 Paste Decryption key <br />
 Click DECRYPT
 
-![Capture2](https://user-images.githubusercontent.com/100990020/177038656-aee0e3e3-6efc-4824-9a2a-e69d976cdc92.PNG)
+![Capture2](https://user-images.githubusercontent.com/100990020/177080658-484f5b28-fe6d-41cf-9626-c7f907033625.PNG)
 
 #### Thank You!!
