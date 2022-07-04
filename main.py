@@ -16,7 +16,7 @@ def decrypt():
     else:
         screen2=Toplevel(screen)
         screen2.title("Decrypted text")
-        screen2.geometry("400x200")
+        screen2.geometry("400x215")
         screen2.configure(bg="green")
 
         message=text1.get(1.0,END)
@@ -27,7 +27,7 @@ def decrypt():
         decrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) - dk_upper_change) % 26
+                transCharIndex = (UPPER_LETTERS.find(character) + dk_upper_change) % 26
                 decrypt += UPPER_LETTERS[transCharIndex]
             elif character.islower():
                 transCharIndex = (LOWER_LETTERS.find(character) - dk_lower_change) % 26
@@ -39,9 +39,9 @@ def decrypt():
         # base64_bytes=base64.b64decode(decode_message)
         # decrypt=base64_bytes.decode("ascii")
 
-        Label(screen2, text="DECRYPT", font="arial", fg="white", bg="green").place(x=10,y=0)
+        Label(screen2, text="DECRYPT", font="arial", fg="white", bg="green").place(x=10,y=10)
         text2=Text(screen2,font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
-        text2.place(x=10,y=40,width=380, height=150)
+        text2.place(x=10,y=45,width=380, height=150)
 
         text2.insert(END,decrypt)
 
@@ -52,7 +52,7 @@ def encrypt():
     if password==config.encryption_key:
         screen1=Toplevel(screen)
         screen1.title("Encrypted text")
-        screen1.geometry("400x200")
+        screen1.geometry("400x295")
         screen1.configure(bg="red")
 
         message=text1.get(1.0,END)
@@ -63,7 +63,7 @@ def encrypt():
         encrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) + dk_upper_change) % 26
+                transCharIndex = (UPPER_LETTERS.find(character) - dk_upper_change) % 26
                 encrypt += UPPER_LETTERS[transCharIndex]
             elif character.islower():
                 transCharIndex = (LOWER_LETTERS.find(character) + dk_lower_change) % 26
@@ -77,11 +77,17 @@ def encrypt():
         # base64_bytes=base64.b64encode(encode_message)
         # encrypt=base64_bytes.decode("ascii")
 
-        Label(screen1, text="ENCRYPT", font="arial", fg="white", bg="red").place(x=10,y=0)
+        Label(screen1, text="ENCRYPT", font="arial", fg="white", bg="red").place(x=10,y=10)
         text2=Text(screen1,font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
-        text2.place(x=10,y=40,width=380, height=150)
+        text2.place(x=10,y=45,width=380, height=150)
 
-        text2.insert(END,encrypt+f"Decryption key: {decription_key}")
+        text2.insert(END,encrypt)
+
+        Label(screen1, text= "DECRYPTION KEY", font="arial", fg="white", bg="red").place(x=10,y=210)
+        text3=Text(screen1,font="Roboto 10", bg="white", relief=GROOVE, wrap=WORD, bd=0)
+        text3.place(x=10,y=245,width=380, height=30)
+
+        text3.insert(END,decription_key)
 
     elif password=="":
         messagebox.showerror("Error","Input Password")
