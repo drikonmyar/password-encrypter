@@ -4,9 +4,6 @@ from tkinter import messagebox
 # import os
 import config
 
-UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz"
-
 def decrypt():
     password=code.get()
 
@@ -27,11 +24,11 @@ def decrypt():
         decrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) + dk_upper_change) % 26
-                decrypt += UPPER_LETTERS[transCharIndex]
+                transCharIndex = (config.UPPER_LETTERS.find(character) + dk_upper_change) % 26
+                decrypt += config.UPPER_LETTERS[transCharIndex]
             elif character.islower():
-                transCharIndex = (LOWER_LETTERS.find(character) - dk_lower_change) % 26
-                decrypt += LOWER_LETTERS[transCharIndex]
+                transCharIndex = (config.LOWER_LETTERS.find(character) - dk_lower_change) % 26
+                decrypt += config.LOWER_LETTERS[transCharIndex]
             else:
                 decrypt += character
 
@@ -63,11 +60,11 @@ def encrypt():
         encrypt = ""
         for character in message:
             if character.isupper():
-                transCharIndex = (UPPER_LETTERS.find(character) - dk_upper_change) % 26
-                encrypt += UPPER_LETTERS[transCharIndex]
+                transCharIndex = (config.UPPER_LETTERS.find(character) - dk_upper_change) % 26
+                encrypt += config.UPPER_LETTERS[transCharIndex]
             elif character.islower():
-                transCharIndex = (LOWER_LETTERS.find(character) + dk_lower_change) % 26
-                encrypt += LOWER_LETTERS[transCharIndex]
+                transCharIndex = (config.LOWER_LETTERS.find(character) + dk_lower_change) % 26
+                encrypt += config.LOWER_LETTERS[transCharIndex]
             else:
                 encrypt += character
 
